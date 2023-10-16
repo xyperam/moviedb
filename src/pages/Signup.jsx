@@ -22,9 +22,9 @@ const handleSignup = async () => {
   };  
 };
 
-// onAuthStateChanged(firebaseAuth, (currentUser) => {
-//   if (currentUser) navigate("/");
-// });
+onAuthStateChanged(firebaseAuth, (currentUser) => {
+  if (currentUser) navigate("/login");
+});
 
 
   return (
