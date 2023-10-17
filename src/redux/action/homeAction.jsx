@@ -1,5 +1,5 @@
 import Axios from "axios";
-import {BASE_URL,API_KEY} from "../../utils/api";
+import {BASE_URL,API_KEY,BASE_IMG_URL} from "../../utils/api";
 
 export const getGenres = () => {
     return(dispatch)=>{

@@ -6,7 +6,10 @@ import Carousel from '../components/atom/Carousel/Carousel'
 import { useSelector } from 'react-redux'
 import { getGenres } from '../redux/action/homeAction'
 import { getMovies } from '../redux/action/homeAction'
-
+import Slider from 'react-slick'
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Card from '../components/atom/Card/Card'
 export default function Home() {
   const {genres,movies} = useSelector(state => state.homeReducer)
   const dispatch  = useDispatch();
@@ -20,12 +23,37 @@ export default function Home() {
   }
   , []);
    
+  const settings = {
+      dots: false,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 5,
+      slidesToScroll: 4,
+  };
 
   return (
  <>
     <Navbar/>
     <Hero/>
-    <Carousel/>
+  <div className='container mx-auto mt-3'>
+    <Slider {...settings}>
+    {movies.map((item)=>{
+      return(
+        <div  className="">
+          <Card
+          key={item.id}
+          id={item.id}
+          original_title={item.original_title}
+          vote_average={item.vote_average}
+          image={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
+          
+          />
+        </div>
+      )
+    })
+    }
+    </Slider>
+  </div>
   
     {genres.map((item,index)=>{
       return(
