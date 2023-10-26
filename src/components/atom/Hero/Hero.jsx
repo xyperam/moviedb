@@ -1,7 +1,25 @@
 import React from 'react'
 import Banner from '../../../assets/gb.jpg'
-const Hero = () => {
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { searchMovies } from '../../../redux/action/homeAction';
+import { useState } from 'react';
 
+const Hero = () => {
+const dispatch = useDispatch();
+const setMovies = useSelector(state => state.homeReducer.setMovies)
+const setMoviesLoaded = useSelector(state => state.homeReducer.setMoviesLoaded)
+const [query,setQuery] = useState('');
+
+  const handleSearch = () => {
+    dispatch(searchMovies(query));
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      handleSearch();
+    }
+  };
   return (
     <section>
     <div className='container mx-auto mt-2 relative h-96'>
@@ -15,8 +33,14 @@ const Hero = () => {
       </div>
  <div className='relative mt-4 px-8 flex w-full flex-wrap items-stretch'>
         <input className='px-3 py-1 relative block w[1-px]  flex-auto rounded-full -mr-1 border ' 
-        type="text" placeholder="Search for a movie or TV show" />
-        <button className='relative z-[3] rounded-full border-2 border-primary px-6 py-2 text-xs font-medium uppercase text-primary transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0'>Search</button>
+        type="text" placeholder="Search for a movie or TV show"
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+        onKeyPress={handleKeyPress}
+        />
+        <button 
+        onClick={handleSearch}
+        className='relative z-[3] rounded-full border-2 border-primary px-6 py-2 text-xs font-medium uppercase text-primary transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0'>Search</button>
       </div>
       </div>
       </div>      

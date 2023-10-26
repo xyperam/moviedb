@@ -3,6 +3,10 @@ const initialState={
     genresLoaded: false,
     genres:[],
     moviesLoaded:false,
+    popularmovies:[],
+    popularmoviesLoaded:false,
+    setMovies:[],
+    setMoviesLoaded:false,
 }
 
 
@@ -20,6 +24,18 @@ const homeReducer = (state=initialState,action)=>{
                 genres:action.payload,
                 genresLoaded:true,
             }
+            case "GET_POPULAR_MOVIES":
+                return{
+                    ...state,
+                    popularmovies:action.payload,
+                    popularmoviesLoaded:true,
+                }
+                case "SEARCH_MOVIES":
+                    return{
+                        ...state,
+                        setMovies:action.payload,
+                        setMoviesLoaded:true,
+                    }
         default:
             return state;
     }
