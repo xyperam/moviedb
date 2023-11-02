@@ -1,5 +1,5 @@
 import React from 'react'
-import  { useEffect } from 'react'
+import  { useEffect,useState } from 'react'
 import Navbar from '../components/molecules/Navbar'
 import Hero from '../components/atom/Hero/Hero'
 import { useDispatch } from 'react-redux'
@@ -11,29 +11,25 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Card from '../components/atom/Card/Card'
 import SearchResult from '../components/molecules/SearchResult'
+import MovieSection from '../components/molecules/MovieSection'
 
 
 export default function Home() {
   const {genres,movies,popularmovies,setMovies} = useSelector(state => state.homeReducer)
   const dispatch  = useDispatch();
-  console.log(movies);
+  const [isSearching, setIsSearching] = useState(false);
   useEffect(() => {
     dispatch(getGenres())
-  }
-  , []);
-  useEffect(() => {
     dispatch(getMovies())
-  }
-  , []);
-  useEffect(() => {
     dispatch(getPopularMovies())
   }
   , []);
 
-    useEffect(() => {
-    dispatch(searchMovies('')); // Ganti dengan query pencarian awal yang diinginkan
-  }, [dispatch]);
-
+  const handleSearch = (query) => {
+    dispatch(searchMovies(query));
+    setIsSearching(true);
+  }
+  
    
   const settings = {
       dots: false,
@@ -41,64 +37,24 @@ export default function Home() {
       speed: 500,
       slidesToShow: 5,
       slidesToScroll: 4,
+      display: isSearching ? 'none' : 'block',
   };
 
   return (
  <>
-    <Navbar/>
-    <Hero/>
+    <Navbar />
+    <Hero handleSearch={handleSearch}/>
+    {isSearching ?(
+       <SearchResult data={setMovies}/>
+    ):(
   <div className='container mx-auto mt-3'>
-    <Slider {...settings}>
-    {movies.map((item)=>{
-      return(
-        <div  className="">
-          <Card
-          key={item.id}
-          id={item.id}
-          original_title={item.original_title}
-          vote_average={item.vote_average}
-          image={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
-          
-          />
-        </div>
-      )
-    })
-    }
-    </Slider>
-        <Slider {...settings}>
-    {popularmovies.map((item)=>{
-      return(
-        <div  className="">
-          <Card
-          key={item.id}
-          id={item.id}
-          original_title={item.original_title}
-          vote_average={item.vote_average}
-          image={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
-          
-          />
-        </div>
-      )
-    })
-    }
-    </Slider>
+      <MovieSection data={movies} settings={settings}/>
+      <MovieSection data={popularmovies} settings={settings}/>
   </div>
   
-    {genres.map((item,index)=>{
-      return(
-        <h1 key={index}>{item.name}</h1>
-      )
-    })
-    }
-     {/* <div className="search-results">
-        <h2>Search Results</h2>
-        <ul>
-          {setMovies.map(movie => (
-            <li key={movie.id}>{movie.title}</li>
-          ))}
-        </ul>
-      </div> */}
-      <SearchResult data={setMovies}/>
+    )}
+  
+     
    </>
   )
 }

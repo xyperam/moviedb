@@ -9,7 +9,7 @@ const SearchResult = ({data}) => {
              <Card
              key={item.id}
              id={item.id}
-             original_title={item.original_title}
+             title={item.title}
              vote_average={item.vote_average}
              image={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
              />
