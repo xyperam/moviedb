@@ -25,7 +25,7 @@ function Navbar() {
   return (
     <nav className='w-full bg-black text-white'>
         <div className='container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center'>
-        <a className='flex items-center mb-4 md:mb-0' href="#">Logo</a>
+        <a className='flex items-center mb-4 md:mb-0' href="/">Logo</a>
         <div className='md:ml-auto md:mr-auto flex flex-wrap items-center justify-center space-x-8'>
             <NavLinks/>  
         </div>

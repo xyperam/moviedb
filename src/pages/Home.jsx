@@ -4,7 +4,7 @@ import Navbar from '../components/molecules/Navbar'
 import Hero from '../components/atom/Hero/Hero'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
-import { getGenres,getPopularMovies,searchMovies } from '../redux/action/homeAction'
+import { getGenres,getPopularMovies,searchMovies,getTrendingMovies,getNowPlayingMovies} from '../redux/action/homeAction'
 import { getMovies } from '../redux/action/homeAction'
 import Slider from 'react-slick'
 import "slick-carousel/slick/slick.css";
@@ -12,16 +12,19 @@ import "slick-carousel/slick/slick-theme.css";
 import Card from '../components/atom/Card/Card'
 import SearchResult from '../components/molecules/SearchResult'
 import MovieSection from '../components/molecules/MovieSection'
+import Gap from '../components/atom/Gap/Gap'
 
 
 export default function Home() {
-  const {genres,movies,popularmovies,setMovies} = useSelector(state => state.homeReducer)
+  const {genres,movies,popularmovies,trendingMovies,nowPlayingMovies,setMovies} = useSelector(state => state.homeReducer)
   const dispatch  = useDispatch();
   const [isSearching, setIsSearching] = useState(false);
   useEffect(() => {
     dispatch(getGenres())
     dispatch(getMovies())
     dispatch(getPopularMovies())
+    dispatch(getTrendingMovies())
+    dispatch(getNowPlayingMovies())
   }
   , []);
 
@@ -30,7 +33,6 @@ export default function Home() {
     setIsSearching(true);
   }
   
-   
   const settings = {
       dots: false,
       infinite: true,
@@ -38,20 +40,49 @@ export default function Home() {
       slidesToShow: 5,
       slidesToScroll: 4,
       display: isSearching ? 'none' : 'block',
+       responsive: [
+        {
+          breakpoint: 976,
+          settings: {
+            slidesToShow: 3,
+            slidesToScroll: 3,
+            infinite: true,
+            dots: true
+          }
+        },
+        {
+          breakpoint: 768,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 2,
+            initialSlide: 2
+          }
+        },
+        {
+          breakpoint: 480,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1
+          }
+        }
+      ]
   };
 
   return (
  <>
     <Navbar />
     <Hero handleSearch={handleSearch}/>
-    {isSearching ?(
-       <SearchResult data={setMovies}/>
-    ):(
-  <div className='container mx-auto mt-3'>
-      <MovieSection data={movies} settings={settings}/>
-      <MovieSection data={popularmovies} settings={settings}/>
-  </div>
-  
+    {isSearching ? (
+      <SearchResult data={setMovies} />
+    ) : (
+      <div className='container mx-auto mt-3'>
+        <Gap height={10}/>
+        <MovieSection data={nowPlayingMovies} settings={settings} titleSection='Now Playing' />
+        <Gap height={10}/>
+        <MovieSection data={trendingMovies} settings={settings} titleSection='Trending Now' />
+        <Gap height={10}/>
+        <MovieSection data={popularmovies} settings={settings} titleSection='Popular'/>
+      </div>
     )}
   
      

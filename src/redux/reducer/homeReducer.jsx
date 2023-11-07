@@ -7,6 +7,10 @@ const initialState={
     popularmoviesLoaded:false,
     setMovies:[],
     setMoviesLoaded:false,
+    trendingMovies:[],
+    trendingMoviesLoaded:false,
+    nowPlayingMovies:[],
+    nowPlayingMoviesLoaded:false,
 }
 
 
@@ -36,6 +40,18 @@ const homeReducer = (state=initialState,action)=>{
                         setMovies:action.payload,
                         setMoviesLoaded:true,
                     }
+                    case "GET_TRENDING_MOVIES":
+                        return{
+                            ...state,
+                            trendingMovies:action.payload,
+                            trendingMoviesLoaded:true,
+                        }
+                        case "GET_NOW_PLAYING_MOVIES":
+                            return{
+                            ...state,
+                            nowPlayingMovies:action.payload,
+                            nowPlayingMoviesLoaded:true,
+                            }
         default:
             return state;
     }
