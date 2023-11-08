@@ -53,16 +53,17 @@ function DetailMovie() {
       </div>
       <div
     className='absolute top-0 left-0 w-full h-full'
-    style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}/>
-      <div className='container mx-auto  relative'>
-      <div className='flex sm:flex bg-red'>
+    style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
+    </div>
+      <div className='container mx-auto relative '>
+      <div className='flex flex-col md:flex-row bg-red items-center'>
         <div className='py-10'>
-      <img className='h-96 max-w-2xl' src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt="" />
+      <img className='h-96 max-w-2xl md:max-h-full' src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt="" />
         </div>
-      <div className='flex  flex-grow flex-col justify-center text-white px-10'>
-        <div className='flex items-center'>
-      <h1 className='font-bold text-5xl'>{movie.title} </h1>
-      <h1 className='mx-2 text-4xl'>({new Date(movie.release_date).getFullYear()})</h1>
+      <div className='flex  flex-col justify-center text-white px-10 '>
+        <div className='flex md:flex-row flex-wrap items-center lg:justify-start sm:justify-center '>
+      <h1 className='font-bold text-5xl md:text-center'>{movie.title} </h1>
+      <h1 className='mx-2 text-4xl md:text-center '>({new Date(movie.release_date).getFullYear()})</h1>
         </div>
       <div className=''>
         <p>
