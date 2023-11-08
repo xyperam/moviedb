@@ -23,10 +23,10 @@ const Card = (props) => {
            onClick={()=>navigate(`/detail-movie/${id}`)}
          />
         <div className='relative top-[-30px] left-8 mb-[-20px]'>
-        <p className=' text-white'>{vote_average}</p>
+        <p className=' text-white'>{vote_average.toFixed(2)}</p>
         </div>
         <Gap height={10}/>
-        <p className='text-center'>{title}</p>
+        <p className='text-center'>{title.length > 20 ? `${title.slice(0, 20)}...` : title}</p>
         </div>
   )
 }

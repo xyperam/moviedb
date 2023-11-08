@@ -3,6 +3,7 @@ import Navbar from '../components/molecules/Navbar'
 import Axios from 'axios'
 import {useParams} from 'react-router-dom'
 import { API_KEY } from '../utils/api'
+import Gap from '../components/atom/Gap/Gap'
 
 function DetailMovie() {
   const params = useParams();
@@ -39,13 +40,32 @@ function DetailMovie() {
 
 
   return (
-    <div>
-      <Navbar/> 
-      <h1>Detail</h1>
-     <p>{movie.title}</p>
-      <p>{movie.overview}</p>
+    <>
+      <Navbar/>
+      <section>
+      <div className='relative'>
+      <div className='absolute w-full'
+      style={{ top: 0, bottom: 0 }}
+      >
+        <img className='object-cover blur-[4px]'
+        style={{ width: '100%', height: '100%' }}
+        src={`https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`} />
+      </div>
+      <div
+    className='absolute top-0 left-0 w-full h-full'
+    style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}/>
+      <div className='container mx-auto  relative'>
+      <div className='flex sm:flex bg-red'>
+        <div className='py-10'>
+      <img className='h-96 max-w-2xl' src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt="" />
+        </div>
+      <div className='flex  flex-grow flex-col justify-center text-white px-10'>
+        <div className='flex items-center'>
+      <h1 className='font-bold text-5xl'>{movie.title} </h1>
+      <h1 className='mx-2 text-4xl'>({new Date(movie.release_date).getFullYear()})</h1>
+        </div>
+      <div className=''>
         <p>
-        Genres:
         {genres.map((genre, index) => (
           <span key={genre.id}>
             {genre.name}
@@ -53,7 +73,17 @@ function DetailMovie() {
           </span>
         ))}
       </p>
-    </div>
+      <Gap height={10}/>
+      <h1 className='text-4xl font-bold'>Overview</h1>
+      <Gap height={3}/>
+      <p>{movie.overview}</p>
+      </div>
+      </div>
+      </div>
+       </div>
+       </div>
+       </section>
+    </>
       )
 }
 

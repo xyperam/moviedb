@@ -51,18 +51,27 @@ export default function Home() {
           }
         },
         {
+          breakpoint: 1440,
+          settings: {
+            slidesToShow: 4,
+            slidesToScroll: 4,
+            infinite: true,
+            dots: true
+          }
+        },
+        {
           breakpoint: 768,
           settings: {
-            slidesToShow: 2,
-            slidesToScroll: 2,
-            initialSlide: 2
+            slidesToShow: 3,
+            slidesToScroll: 3,
+            initialSlide: 3
           }
         },
         {
           breakpoint: 480,
           settings: {
-            slidesToShow: 1,
-            slidesToScroll: 1
+            slidesToShow: 2,
+            slidesToScroll: 2
           }
         }
       ]
@@ -75,7 +84,7 @@ export default function Home() {
     {isSearching ? (
       <SearchResult data={setMovies} />
     ) : (
-      <div className='container mx-auto mt-3'>
+      <div className='container mx-auto mt-3 '>
         <Gap height={10}/>
         <MovieSection data={nowPlayingMovies} settings={settings} titleSection='Now Playing' />
         <Gap height={10}/>
