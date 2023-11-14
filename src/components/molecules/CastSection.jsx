@@ -12,6 +12,7 @@ const CastSection = ({data}) => {
       speed: 500,
       slidesToShow: 8,
       slidesToScroll: 4,
+      arrows: false,
        responsive: [
         {
           breakpoint: 976,

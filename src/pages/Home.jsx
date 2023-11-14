@@ -40,14 +40,14 @@ export default function Home() {
       slidesToShow: 5,
       slidesToScroll: 4,
       display: isSearching ? 'none' : 'block',
+      arrows: false,
        responsive: [
         {
           breakpoint: 976,
           settings: {
             slidesToShow: 3,
             slidesToScroll: 3,
-            infinite: true,
-            dots: true
+            
           }
         },
         {
@@ -55,8 +55,7 @@ export default function Home() {
           settings: {
             slidesToShow: 4,
             slidesToScroll: 4,
-            infinite: true,
-            dots: true
+           
           }
         },
         {
