@@ -11,7 +11,9 @@ const initialState={
     trendingMoviesLoaded:false,
     nowPlayingMovies:[],
     nowPlayingMoviesLoaded:false,
-}
+
+    }
+
 
 
 const homeReducer = (state=initialState,action)=>{

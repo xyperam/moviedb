@@ -11,9 +11,6 @@ const setMovies = useSelector(state => state.homeReducer.setMovies)
 const setMoviesLoaded = useSelector(state => state.homeReducer.setMoviesLoaded)
 const [query,setQuery] = useState('');
 
-  // const handleSearch = (query) => {
-  //   dispatch(searchMovies(query));
-  // };
 
   const handleKeyPress = (e) => {
     if (e.key === 'Enter') {
@@ -39,8 +36,8 @@ const [query,setQuery] = useState('');
         onKeyPress={handleKeyPress}
         />
         <button 
-        onClick={handleSearch}
-        className='relative z-[3] rounded-full border-2 border-primary px-6 py-2 text-xs font-medium uppercase text-primary transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0'>Search</button>
+        onClick={() => handleSearch(query)} 
+        className=' text-white relative z-[3] rounded-full border-2 border-primary px-6 py-2 text-xs font-medium uppercase text-primary transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0'>Search</button>
       </div>
       </div>
       </div>      

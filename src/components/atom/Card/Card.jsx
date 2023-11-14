@@ -16,7 +16,7 @@ const Card = (props) => {
     
     const navigate = useNavigate();
   return (
-    <div className='bg-red-500 w-64 h-96 rounded mx-4 my-6 '>
+    <div className='md:w-64 md:h-96 rounded mx-4 my-6 sm:w-32 sm:h-60'>
         <img className='w-full h-full object-cover' src={image} alt='image'
           onMouseEnter={handleHover}
           onMouseLeave={handleHoverExit}

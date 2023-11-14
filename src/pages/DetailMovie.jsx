@@ -4,11 +4,16 @@ import Axios from 'axios'
 import {useParams} from 'react-router-dom'
 import { API_KEY } from '../utils/api'
 import Gap from '../components/atom/Gap/Gap'
+import CastCard from '../components/atom/CastCard/CastCard'
+import CastSection from '../components/molecules/CastSection'
+import PosterSection from '../components/molecules/PosterSection'
 
 function DetailMovie() {
   const params = useParams();
   const [movie,setMovie] = useState({});
   const [genres, setGenres] = useState([]);
+  const [credits,setCredits] = useState([]);
+  const [images,setImages] = useState([]);
   useEffect(() => {
     const fetchMovieDetail = async () => {
       try{
@@ -34,9 +39,34 @@ function DetailMovie() {
         console.log(error);
       }
     };
-    fetchMovieDetail();
-  }, [params.id]);
+    
+    const fetchCredits = async () => {
+      try {
+        const response = await Axios.get(
+          `https://api.themoviedb.org/3/movie/${params.id}/credits?api_key=${API_KEY}&language=en-US`
+        );
+        setCredits(response.data.cast.slice(0, 10));
+        console.log(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
 
+    const fetchPosters = async () => {
+      try {
+        const response = await Axios.get(
+           `https://api.themoviedb.org/3/movie/${params.id}/images?api_key=${API_KEY}&language=en-US&include_image_language=en,null`
+        );
+        setImages(response.data.posters.slice(0, 10));
+        console.log(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchMovieDetail();
+    fetchCredits();
+    fetchPosters();
+  }, [params.id]);
 
 
   return (
@@ -77,13 +107,19 @@ function DetailMovie() {
       <Gap height={10}/>
       <h1 className='text-4xl font-bold'>Overview</h1>
       <Gap height={3}/>
-      <p>{movie.overview}</p>
+      <p className='text-justify'>{movie.overview}</p>
       </div>
       </div>
       </div>
        </div>
        </div>
        </section>
+        <Gap height={10}/>
+      <section className='container mx-auto'>
+        <CastSection data={credits}/>
+        <Gap height={15}/>
+        <PosterSection data={images}/>
+        </section>
     </>
       )
 }
