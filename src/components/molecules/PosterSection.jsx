@@ -12,14 +12,14 @@ const PosterSection = ({data}) => {
       speed: 500,
       slidesToShow: 5,
       slidesToScroll: 3,
+      initialSlide: 5,
        responsive: [
         {
           breakpoint: 976,
           settings: {
             slidesToShow: 3,
             slidesToScroll: 3,
-            infinite: true,
-            dots: true
+            initialSlide: 3
           }
         },
         {
@@ -27,8 +27,7 @@ const PosterSection = ({data}) => {
           settings: {
             slidesToShow: 4,
             slidesToScroll: 4,
-            infinite: true,
-            dots: true
+            initialSlide: 4
           }
         },
         {
@@ -43,7 +42,8 @@ const PosterSection = ({data}) => {
           breakpoint: 480,
           settings: {
             slidesToShow: 2,
-            slidesToScroll: 2
+            slidesToScroll: 2,
+            initialSlide: 2
           }
         }
       ]
