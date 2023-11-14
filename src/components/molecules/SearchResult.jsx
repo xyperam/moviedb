@@ -2,7 +2,7 @@ import React from 'react'
 import Card from '../atom/Card/Card'
 const SearchResult = ({data}) => {
   return (
-       <div className="container mx-auto mt-3">
+       <div className="container mx-auto mt-3 text-black">
         <h2>Search Results</h2>
         <div className="flex flex-wrap justify-between">
          {data.map(item => (

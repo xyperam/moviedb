@@ -9,7 +9,7 @@ function MovieSection({data,settings,titleSection}) {
 
   return (
         <>
-        <h1>{titleSection}</h1>
+        <h1 className='text-black'>{titleSection}</h1>
        <Slider {...settings}>
     {data.map((item)=>{
       return(

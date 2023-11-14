@@ -16,7 +16,7 @@ const Card = (props) => {
     
     const navigate = useNavigate();
   return (
-    <div className='md:w-64 md:h-96 rounded mx-4 my-6 sm:w-32 sm:h-60'>
+    <div className='md:w-64 md:h-96 rounded mx-4 my-6 sm:w-32 sm:h-60 text-black'>
         <img className='w-full h-full object-cover' src={image} alt='image'
           onMouseEnter={handleHover}
           onMouseLeave={handleHoverExit}
@@ -26,7 +26,7 @@ const Card = (props) => {
         <p className=' text-white'>{vote_average.toFixed(2)}</p>
         </div>
         <Gap height={10}/>
-        <p className='text-center'>{title.length > 20 ? `${title.slice(0, 20)}...` : title}</p>
+        <p className='text-center text-black'>{title.length > 20 ? `${title.slice(0, 20)}...` : title}</p>
         </div>
   )
 }
