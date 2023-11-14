@@ -11,7 +11,7 @@ const PosterSection = ({data}) => {
       infinite: false,
       speed: 500,
       slidesToShow: 5,
-      slidesToScroll: 3,
+      slidesToScroll: 5,
       initialSlide: 5,
       arrows: false,
        responsive: [
