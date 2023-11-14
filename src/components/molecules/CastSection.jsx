@@ -47,7 +47,7 @@ const CastSection = ({data}) => {
   };
   return (
     <>
-    <h1 className='font-bold text-xl'>Top Billed Cast</h1>
+    <h1 className='font-bold text-xl text-black'>Top Billed Cast</h1>
     <Gap height={15}/>
     <Slider {...settings}>
     {data.map((credit)=>{

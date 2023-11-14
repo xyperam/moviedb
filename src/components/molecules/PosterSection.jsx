@@ -13,6 +13,7 @@ const PosterSection = ({data}) => {
       slidesToShow: 5,
       slidesToScroll: 3,
       initialSlide: 5,
+      arrows: false,
        responsive: [
         {
           breakpoint: 976,
@@ -50,12 +51,11 @@ const PosterSection = ({data}) => {
   };
   return (
     <>
-    <h1 className='font-bold text-xl'>Posters</h1>
+    <h1 className='font-bold text-xl text-black'>Posters</h1>
     <Gap height={15}/>
     <Slider {...settings}>
     {data.map((images)=>{
         return(
-  
         <img className="h-72 w-36"src={`https://image.tmdb.org/t/p/w500/${images.file_path}`}/>
         )
     })}
