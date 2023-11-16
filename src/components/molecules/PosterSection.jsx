@@ -56,7 +56,9 @@ const PosterSection = ({data}) => {
     <Slider {...settings}>
     {data.map((images)=>{
         return(
-        <img className="h-72 w-36"src={`https://image.tmdb.org/t/p/w500/${images.file_path}`}/>
+        <img 
+        key={images.id}
+        className="h-72 w-36" src={`https://image.tmdb.org/t/p/w500/${images.file_path}`}/>
         )
     })}
     </Slider>

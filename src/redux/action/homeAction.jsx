@@ -18,7 +18,7 @@ export const getMovies = () => {
         Axios.get(`${BASE_URL}/discover/movie?api_key=${API_KEY}&language=en-US`)
         .then((result)=>{
             const responseAPI= result.data.results;
-            // console.log('data API movies :',responseAPI);
+            console.log('data API movies :',responseAPI);
             dispatch({type:"GET_MOVIES",payload:result.data.results});
         }) .catch((err)=>{
             console.log('error :',err);
@@ -26,6 +26,25 @@ export const getMovies = () => {
     }
     
 }
+export const getMoviesByGenre = (genreId) => {
+    return (dispatch) => {
+        Axios.get(`${BASE_URL}/discover/movie`, {
+            params: {
+                api_key: API_KEY,
+                language: 'en-US',
+                with_genres: genreId,
+            },
+        })
+        .then((result) => {
+            const responseAPI = result.data.results;
+            console.log('data API movies by genre:', responseAPI);
+            dispatch({ type: "GET_MOVIES", payload: result.data.results });
+        })
+        .catch((err) => {
+            console.log('error:', err);
+        });
+    };
+};
 
 export const searchMovies =(query)=>{
     return(dispatch)=>{

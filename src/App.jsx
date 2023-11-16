@@ -6,6 +6,7 @@ import Signup from './pages/Signup';
 import store from './redux/store';
 import { Provider } from 'react-redux';
 import DetailMovie from './pages/DetailMovie';
+import Movies from './pages/Movies';
 function App() {
   return (
     <Provider store={store}>
@@ -15,6 +16,7 @@ function App() {
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/detail-movie/:id" element={<DetailMovie />} />
+      <Route path="/movies" element={<Movies />} />
     </Routes>
     </BrowserRouter>
     </Provider>

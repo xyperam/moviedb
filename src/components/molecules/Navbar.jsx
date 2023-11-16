@@ -19,7 +19,7 @@ function Navbar() {
         <NavLink to='/'>Home</NavLink>
         <NavLink to='/'>TV Shows</NavLink>
         <NavLink to='/'>MyList</NavLink>
-        <NavLink to='/'>Movies</NavLink>
+        <NavLink to='/Movies'>Movies</NavLink>
         </>
     )
     }
