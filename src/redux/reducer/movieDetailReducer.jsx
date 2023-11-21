@@ -5,7 +5,10 @@ const initialState = {
     genresLoaded: false,
     credits: [],
     creditsLoaded: false,
-
+    backdrop: [],
+    backdropLoaded: false,
+    poster: [],
+    posterLoaded: false,
 };
 
 const movieDetailReducer = (state = initialState, action) => {
@@ -28,6 +31,19 @@ const movieDetailReducer = (state = initialState, action) => {
                 credits: action.payload,
                 creditsLoaded: true,
             }
+        case "GET_BACKDROP":
+            return {
+                ...state,
+                backdrop: action.payload,
+                backdropLoaded: true,
+            }
+        case "GET_POSTER":
+            return {
+                ...state,
+                poster: action.payload,
+                posterLoaded: true,
+            }
+        
         default:
             return state;
     }
