@@ -24,7 +24,7 @@ function DetailMovieSection({movie,genres}) {
         </div>
       <div className='flex  flex-col justify-center text-white px-10 '>
         <div className='flex md:flex-row flex-wrap items-center lg:justify-start sm:justify-center '>
-      <h1 className='font-bold text-5xl md:text-center'>{movie.title} </h1>
+      <h1 className='font-bold text-4xl md:text-center'>{movie.title} </h1>
       <h1 className='mx-2 text-4xl md:text-center '>({new Date(movie.release_date).getFullYear()})</h1>
         </div>
       <div className=''>

@@ -7,13 +7,21 @@ import Gap from '../components/atom/Gap/Gap'
 import CastSection from '../components/molecules/CastSection'
 import PosterSection from '../components/molecules/PosterSection'
 import DetailMovieSection from '../components/molecules/DetailMovieSection'
-
+import SwitchButton from '../components/atom/SwitchButton/SwitchButton'
+import BackdropSection from '../components/molecules/BackdropSection'
 function DetailMovie() {
   const params = useParams();
   const [movie,setMovie] = useState({});
   const [genres, setGenres] = useState([]);
   const [credits,setCredits] = useState([]);
   const [images,setImages] = useState([]);
+  const [isPoster, setIsPoster] = useState(true); 
+  const [backdrop, setBackdrop] = useState([]);
+
+     const handleSwitch = () => {
+    setIsPoster(!isPoster);
+  };
+
   useEffect(() => {
     const fetchMovieDetail = async () => {
       try{
@@ -63,9 +71,21 @@ function DetailMovie() {
         console.log(error);
       }
     }
+    const fetchBackdrops = async () => {
+      try {
+        const response = await Axios.get(
+           `https://api.themoviedb.org/3/movie/${params.id}/images?api_key=${API_KEY}&language=en-US&include_image_language=en,null`
+        );
+        setBackdrop(response.data.backdrops.slice(0, 10));
+        console.log(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
     fetchMovieDetail();
     fetchCredits();
     fetchPosters();
+    fetchBackdrops();
   }, [params.id]);
 
 
@@ -77,7 +97,13 @@ function DetailMovie() {
       <section className='container mx-auto'>
         <CastSection data={credits}/>
         <Gap height={15}/>
-        <PosterSection data={images}/>
+        <SwitchButton isChecked={isPoster} onToggle={handleSwitch} />
+          {isPoster?
+        (
+          <PosterSection data={images} />
+        ) : (
+          <BackdropSection data={backdrop} />
+        )}
         </section>
     </>
       )

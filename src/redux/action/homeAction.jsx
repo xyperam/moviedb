@@ -49,6 +49,7 @@ export const getMoviesByGenre = (genreId) => {
 export const searchMovies =(query)=>{
     return(dispatch)=>{
         Axios.get(`${BASE_URL}/search/movie?api_key=${API_KEY}&language=en-US&query=${query}`)
+        
         .then((result)=>{
             const responseAPI= result.data.results;
             // console.log('data API  :',responseAPI);

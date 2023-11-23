@@ -56,6 +56,7 @@ const CastSection = ({data}) => {
           <div className="cursor-pointer">
             <CastCard
             key={credit.id}
+            person_id={credit.id}
             name={credit.name}
             character={credit.character}
             profile_path={
