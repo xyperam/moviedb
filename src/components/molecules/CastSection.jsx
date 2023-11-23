@@ -4,6 +4,7 @@ import Slider from 'react-slick'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Gap from '../atom/Gap/Gap'
+import DefaultProfile from '../../assets/ppblank.jpg'
 
 const CastSection = ({data}) => {
      const settings = {
@@ -57,7 +58,11 @@ const CastSection = ({data}) => {
             key={credit.id}
             name={credit.name}
             character={credit.character}
-            profile_path={`https://image.tmdb.org/t/p/w500/${credit.profile_path}`}
+            profile_path={
+              credit.profile_path !== null ?
+              `https://image.tmdb.org/t/p/w500/${credit.profile_path}`
+            : DefaultProfile
+            }
             />
           </div>
         )
