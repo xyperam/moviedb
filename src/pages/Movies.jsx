@@ -26,11 +26,11 @@ function Movies() {
   return (
     <>
       <Navbar />
-      <GenreList data={genres} onChangeGenre={handleGenreChange} />
-      <div>
         <div className="container mx-auto mt-3 text-black">
+      <GenreList data={genres} onChangeGenre={handleGenreChange} />
+    
         <h1>Movies</h1>
-        <div className="flex flex-wrap justify-between">
+        <div className="mx-auto flex flex-wrap justify-between">
           {filteredMovies.map((movie) => (
              <Card
              key={movie.id}
@@ -42,7 +42,7 @@ function Movies() {
               ))}
         </div>
       </div>
-      </div>
+     
     </>
   );
 }

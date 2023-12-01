@@ -4,9 +4,9 @@ import Slider from 'react-slick'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Gap from '../atom/Gap/Gap'
+import { SwitchButton } from '../atom';
 
-
-const PosterSection = ({data}) => {
+const BackdropSection = ({data}) => {
      const settings = {
       dots: true,
       infinite: false,
@@ -58,7 +58,7 @@ const PosterSection = ({data}) => {
         return(
         <img 
         key={images.id}
-        className="h-72 w-36" src={`https://image.tmdb.org/t/p/w500/${images.file_path}`}/>
+        className="h-90 w-10" src={`https://image.tmdb.org/t/p/w500/${images.file_path}`}/>
         )
     })}
     </Slider>
@@ -66,4 +66,4 @@ const PosterSection = ({data}) => {
   )
 }
 
-export default PosterSection
+export default BackdropSection
